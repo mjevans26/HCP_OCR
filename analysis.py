@@ -16,7 +16,7 @@ parser.add_argument('--outDir', '-o', required = True, help = 'root directory in
 parser.add_argument('--tessExc', '-t', required = True, help = 'location of tesseract executable', type = str)
 args = parser.parse_args()
 
-pytesseract.pytesseract.tesseract_cmd = f'{args.t}'
+pytesseract.pytesseract.tesseract_cmd = f'{args.tessExc}'
 
 from pdf2image.exceptions import (
     PDFInfoNotInstalledError,
@@ -25,12 +25,12 @@ from pdf2image.exceptions import (
 )
 
 rows = []
-for root, dirs, files in walk(args.d):
+for root, dirs, files in walk(args.directory):
   if len(files) > 0:
     for file in files:
       if path.splitext(file)[1] == '.pdf':
-        row = process_file(root, file, args.o)
+        row = process_file(root, file, args.outDir)
         rows.append(row)
 
 df = pd.DataFrame(rows, columns = ['file', 'region', 'hcp', 'npages', 'ocr'])
-df.to_csv(f'{args.o}/metadata.csv')
+df.to_csv(f'{args.outDir}/metadata.csv')
