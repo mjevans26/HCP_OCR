@@ -89,9 +89,9 @@ def ocr_file(file, out, preprocess = 'thresh'):
 def process_file(root, file, out):
     infile = join(root, file)
     parts = root.split('/')
-    region = parts[-4]
-    hcp = parts[-3]
-    outpath = join(out, '/'.join(parts[-4:-1]))
+    region = parts[-3]
+    hcp = parts[-2]
+    outpath = join(out, '/'.join(parts[-3:]))
     outfile = join(outpath, file)
     
     os.makedirs(outpath, exist_ok = True)
