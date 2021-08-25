@@ -91,7 +91,7 @@ def process_file(root, file, out):
     parts = root.split('/')
     region = parts[-4]
     hcp = parts[-3]
-    outpath = join(out, '/'.join(parts[9:12]))
+    outpath = join(out, '/'.join(parts[-4:-1]))
     outfile = join(outpath, file)
     
     os.makedirs(outpath, exist_ok = True)
