@@ -89,8 +89,8 @@ def ocr_file(file, out, preprocess = 'thresh'):
 def process_file(root, file, out):
     infile = join(root, file)
     parts = root.split('/')
-    region = parts[9]
-    hcp = parts[10]
+    region = parts[-4]
+    hcp = parts[-3]
     outpath = join(out, '/'.join(parts[9:12]))
     outfile = join(outpath, file)
     
